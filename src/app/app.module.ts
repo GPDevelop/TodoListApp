@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { HomeComponent } from './home/home.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTableModule} from '@angular/material/table';
 import { TareaComponent } from './tarea/tarea.component';
 import { MatDialogModule} from '@angular/material/dialog';
@@ -22,7 +22,7 @@ import { TareaDialogComponent } from './tarea/dialog/tarea-dialog/tarea-dialog.c
 import { UsuarioDialogComponent } from './usuario/dialog/usuario-dialog/usuario-dialog.component';
 import { DialogDeleteComponent } from './common/delete/deletedialog.component';
 import { LoginComponent } from './login/login.component';
-
+import { JwtInterceptor } from './Security/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,9 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

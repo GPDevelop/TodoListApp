@@ -41,7 +41,7 @@ export class UsuarioDialogComponent implements OnInit {
   }
 
   addUsuario(){
-    const usuario: usuarioInterface = {id: 0, userName: this.username, nombre: this.nombre, password: this.password};
+    const usuario: usuarioInterface = {id: 0, userName: this.username, nombre: this.nombre, password: this.password, token: ''};
     this.apiUsuario.add(usuario).subscribe(
       response => {
         if(response.result === 1){
@@ -54,7 +54,7 @@ export class UsuarioDialogComponent implements OnInit {
   }
 
   editUsuario(){
-    const usuario: usuarioInterface = {id: this.id, userName: this.username, nombre: this.nombre, password: this.password};
+    const usuario: usuarioInterface = {id: this.id, userName: this.username, nombre: this.nombre, password: this.password, token: ''};
     this.apiUsuario.edit(usuario).subscribe(
       response => {
         if(response.result === 1){

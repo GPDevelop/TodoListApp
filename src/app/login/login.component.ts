@@ -10,7 +10,10 @@ export class LoginComponent implements OnInit
     public username: string;
     public password: string;
 
-    constructor(public apiAuth: ApiAuthService){
+    constructor(public apiAuth: ApiAuthService,
+        private router: Router
+        ){
+        
     }
     
     ngOnInit()
@@ -19,7 +22,10 @@ export class LoginComponent implements OnInit
 
     login(){
         this.apiAuth.login(this.username, this.password).subscribe(response => {
-            console.log(response);
+            if(response.result === 1)
+            {
+                this.router.navigate(['/']);
+            }
         });
     }
 
