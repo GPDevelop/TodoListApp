@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>{{ tarea != null ? 'Editar Tarea': 'Nueva Tarea' }}</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="Nombre">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Descripcion</mat-label>
+        <input matInput [(ngModel)]="Descripcion">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select [(ngModel)]="UsuarioSelect">
+            <mat-label>Usuario</mat-label>
+            <mat-option *ngFor="let usuario of Usuarios" [value]="usuario.id">{{ usuario.nombre }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select [(ngModel)]="EstadoSelect">
+            <mat-label>Estado</mat-label>
+            <mat-option *ngFor="let estado of Estados" [value]="estado.id">{{ estado.nombre }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="close()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="tarea != null ? editTarea() : addTarea()">Guardar</button>
+</div>
